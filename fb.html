@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Guest Feedback</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f5f7;
+            margin: 0;
+            padding: 25px 12px;
+            color: #263238;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px #00000012;
+        }
+
+        header {
+            text-align: center;
+            background: #123b36;
+            color: white;
+            padding: 25px 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        header p {
+            margin: 0;
+            color: #e0ece9;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 18px 0 8px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd5d8;
+            border-radius: 6px;
+            font-size: 15px;
+            background: white;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 5px;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            margin: 0;
+            font-size: 34px;
+            color: #cbd0d2;
+            cursor: pointer;
+        }
+
+        .rating label:hover,
+        .rating label:hover ~ label,
+        .rating input:checked ~ label {
+            color: #f4b400;
+        }
+
+        button {
+            width: 100%;
+            background: #123b36;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 25px;
+        }
+
+        button:hover {
+            background: #1d5b50;
+        }
+
+        #message {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #667477;
+            margin-top: 18px;
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <header>
+        <h1>Guest Feedback</h1>
+        <p>Your experience matters to us.</p>
+    </header>
+
+    <form id="feedbackForm">
+
+        <label for="guestName">Guest Name (Optional)</label>
+        <input type="text" id="guestName"
+               placeholder="Enter your name">
+
+        <label for="roomNumber">Room Number (Optional)</label>
+        <input type="text" id="roomNumber"
+               placeholder="Enter room number">
+
+        <label for="visitDate">Date of Stay</label>
+        <input type="date" id="visitDate" required>
+
+        <label>Overall Experience *</label>
+        <div class="rating">
+            <input type="radio" id="star5"
+                   name="rating" value="5" required>
+            <label for="star5" title="Excellent">★</label>
+
+            <input type="radio" id="star4"
+                   name="rating" value="4">
+            <label for="star4" title="Very Good">★</label>
+
+            <input type="radio" id="star3"
+                   name="rating" value="3">
+            <label for="star3" title="Good">★</label>
+
+            <input type="radio" id="star2"
+                   name="rating" value="2">
+            <label for="star2" title="Fair">★</label>
+
+            <input type="radio" id="star1"
+                   name="rating" value="1">
+            <label for="star1" title="Poor">★</label>
+        </div>
+
+        <label for="department">Department to Rate</label>
+        <select id="department" required>
+            <option value="">Select department</option>
+            <option>Reception / Front Office</option>
+            <option>Housekeeping</option>
+            <option>Restaurant / Food and Beverage</option>
+            <option>Room Service</option>
+            <option>Maintenance</option>
+            <option>Security</option>
+            <option>Other</option>
+        </select>
+
+        <label for="cleanliness">Room Cleanliness</label>
+        <select id="cleanliness" required>
+            <option value="">Select rating</option>
+            <option>Excellent</option>
+            <option>Good</option>
+            <option>Average</option>
+            <option>Poor</option>
+        </select>
+
+        <label for="service">Staff Service</label>
+        <select id="service" required>
+            <option value="">Select rating</option>
+            <option>Excellent</option>
+            <option>Good</option>
+            <option>Average</option>
+            <option>Poor</option>
+        </select>
+
+        <label for="food">Food and Beverage</label>
+        <select id="food" required>
+            <option value="">Select rating</option>
+            <option>Excellent</option>
+            <option>Good</option>
+            <option>Average</option>
+            <option>Poor</option>
+            <option>Not Applicable</option>
+        </select>
+
+        <label for="comments">Comments or Suggestions</label>
+        <textarea id="comments"
+                  placeholder="Tell us what we did well or how we can improve..."
+                  maxlength="2000"></textarea>
+
+        <label for="recommend">Would you recommend our hotel?</label>
+        <select id="recommend" required>
+            <option value="">Select an answer</option>
+            <option>Yes</option>
+            <option>No</option>
+            <option>Maybe</option>
+        </select>
+
+        <button type="submit">Submit Feedback</button>
+
+        <div id="message" role="status"></div>
+
+        <p class="note">
+            Thank you for helping us improve our guest experience.
+        </p>
+
+    </form>
+</div>
+
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxiSvgXfLVjwLwmA-WkhHLqEUyHEyqv5a0_YbodHnW9ZJJGEgZt8arUwPDawqAb13CBcw/exec";
+
+const form = document.getElementById("feedbackForm");
+const message = document.getElementById("message");
+
+form.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const rating = document.querySelector(
+        'input[name="rating"]:checked'
+    );
+
+    if (!rating) {
+        message.textContent = "Please select a star rating.";
+        return;
+    }
+
+    if (!SCRIPT_URL.startsWith("https://script.google.com/")) {
+        message.textContent = "Please configure the email service URL.";
+        return;
+    }
+
+    const feedback = {
+        guestName: document.getElementById("guestName").value,
+        roomNumber: document.getElementById("roomNumber").value,
+        visitDate: document.getElementById("visitDate").value,
+        overallRating: Number(rating.value),
+        department: document.getElementById("department").value,
+        cleanliness: document.getElementById("cleanliness").value,
+        staffService: document.getElementById("service").value,
+        foodAndBeverage: document.getElementById("food").value,
+        comments: document.getElementById("comments").value,
+        recommend: document.getElementById("recommend").value
+    };
+
+    const button = form.querySelector('button[type="submit"]');
+    button.disabled = true;
+    button.textContent = "Submitting...";
+    message.textContent = "";
+
+    try {
+        await fetch(SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain;charset=UTF-8"
+            },
+            body: JSON.stringify(feedback)
+        });
+
+        message.textContent =
+            "Thank you for your feedback. Please contact reception if you need assistance.";
+
+        form.reset();
+
+    } catch (error) {
+        message.textContent =
+            "Unable to send feedback. Please check your connection and try again.";
+    } finally {
+        button.disabled = false;
+        button.textContent = "Submit Feedback";
+    }
+});
+</script>
+
+</body>
+</html>
